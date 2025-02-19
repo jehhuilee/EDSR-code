@@ -9,7 +9,7 @@ from pytorch_msssim import ssim
 
 div2k_path = "C:/Users/user/Desktop/EDSR/dataset"
 
-batch_size = 16
+batch_size = 64
 learning_rate = 1e-4
 num_epochs = 300
 
@@ -17,7 +17,8 @@ num_epochs = 300
 train_dataset = SRDataset(div2k_path)
 train_loader = DataLoader(train_dataset,
                          batch_size=batch_size,
-                         shuffle=True)
+                         shuffle=True, 
+                         num_workers=16)
 
 # 모델, 손실함수, 옵티마이저 설정
 device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
